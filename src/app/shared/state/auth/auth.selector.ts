@@ -9,22 +9,18 @@ export const isAuthenticated = createSelector(
   s => (s !== undefined && s.isAuthenticated !== undefined) ? s.isAuthenticated : false
 );
 
+export const getToken = createSelector(
+  featureSelector,
+  s => (s !== undefined && s.token !== undefined) ? s.token : undefined);
+
+
 export const getAuthState = createSelector(
   featureSelector,
   s => (s === undefined || s.token === undefined || s.retryAttempts === undefined) ? undefined : s);
 
-export const getAuthToken = createSelector(
+export const getUserInfo = createSelector(
   featureSelector,
-  s => (s.token !== undefined) ? s.token : undefined
+  s => (s.userInfo !== undefined) ? s.userInfo : undefined
 );
 
-
-export const getStatus = createSelector(
-  featureSelector,
-  s => {
-    return {
-      isAuthenticated: s.isAuthenticated
-    };
-  }
-);
 

@@ -8,6 +8,8 @@ import {AuthService} from '../../services/auth/auth.service';
 import {TokenInterface} from '../../services/token-storage/token.interface';
 import {HttpErrorResponse} from '@angular/common/http';
 import {TokenStorageService} from '../../services/token-storage/token-storage.service';
+import {UserService} from '@app-shared/services/user/user.service';
+import {UserInfoInterface} from '@app-shared/services/user/user-info.interface';
 
 @Injectable()
 export class AuthEffects {
@@ -15,6 +17,7 @@ export class AuthEffects {
   constructor(
     private actions$: Actions,
     private authService: AuthService,
+    private userService: UserService,
     private tokenStorageService: TokenStorageService
   ) {
   }
@@ -67,6 +70,18 @@ export class AuthEffects {
           map((token: TokenInterface) => new authActions.StoreToken(token)),
           catchError((err: HttpErrorResponse) => of(new authActions.LoadFail(err)))
         );
+    })
+  );
+
+  @Effect()
+  userInfo$: Observable<Action> = this.actions$.pipe(
+    ofType(authActions.AuthActionTypes.UserInfo),
+    map((action: authActions.UserInfo) => action),
+    switchMap(() => {
+      return this.userService.getUserInfo().pipe(
+        map((userInfo: UserInfoInterface) => new authActions.UserInfoSuccess(userInfo)),
+        catchError((err: HttpErrorResponse) => of(new authActions.LoadFail(err)))
+      );
     })
   );
 

@@ -11,7 +11,8 @@ export const initialState: AuthStateInterface = {
     id_token: '',
     refresh_token: '',
     token_type: ''
-  }
+  },
+  userInfo: undefined
 };
 
 export function reducer(state = initialState, action: AuthActions): AuthStateInterface {
@@ -30,6 +31,13 @@ export function reducer(state = initialState, action: AuthActions): AuthStateInt
         ...state,
         retryAttempts: 0,
         isAuthenticated: false
+      };
+    }
+
+    case AuthActionTypes.UserInfoSuccess: {
+      return {
+        ...state,
+        userInfo: {...action.userInfo}
       };
     }
 

@@ -1,4 +1,4 @@
-import {MetaDataInterface} from "./meta-data.interface";
+import {MetaDataInterface} from './meta-data.interface';
 
 export interface UserInfoInterface {
     sub: string;

@@ -15,7 +15,8 @@ export const metaReducers: MetaReducer<AppStateInterface>[] = !environment.produ
   imports: [
     CommonModule,
     // NGRX Store
-    StoreModule.forRoot(appReducer,
+    StoreModule.forRoot(
+      appReducer,
       {
         metaReducers
       }

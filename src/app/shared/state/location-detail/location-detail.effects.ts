@@ -3,10 +3,10 @@ import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import {Action} from '@ngrx/store';
 import {Observable, of} from 'rxjs';
-import {catchError, map, mergeMap} from 'rxjs/operators';
-import * as locationActions from './location-detail.actions';
+import {catchError, map, mergeMap, switchMap} from 'rxjs/operators';
+import * as LocationDetailActions from './location-detail.actions';
 import {LocationService} from '../../services/location/location.service';
-import {LocationInterface} from '../../services/location/location.interface';
+import {LocationDetailInterface} from '@app-shared/services/location/location-detail.interface';
 
 @Injectable()
 export class LocationDetailEffects {
@@ -18,26 +18,25 @@ export class LocationDetailEffects {
   }
 
   @Effect()
-  loadLocations$: Observable<Action> = this.actions$.pipe(
-    ofType(locationActions.LocationActionTypes.Load),
-    mergeMap(() => {
-        return this.locationService.getLocations().pipe(
-          map((data: LocationInterface[]) => {
-              return new locationActions.LoadSuccess(data);
-            }
-          ),
-          catchError((err: HttpErrorResponse) => of(new locationActions.LoadFail(err)))
-        );
-      }
+  loadLocationDetails$: Observable<Action> = this.actions$.pipe(
+    ofType(LocationDetailActions.LocationDetailActionTypes.Load),
+    map((action: LocationDetailActions.Load) => action.locationId),
+    switchMap((locationId: string) =>
+      this.locationService.getLocationDetails(locationId).pipe(
+        map((data: LocationDetailInterface) =>
+          new LocationDetailActions.LoadSuccess(data)
+        ),
+        catchError((err: HttpErrorResponse) => of(new LocationDetailActions.LoadFail(err)))
+      )
     )
   );
 
   @Effect()
   showErrorNotification$: Observable<Action> = this.actions$.pipe(
     ofType(
-      locationActions.LocationActionTypes.LoadFail
+      LocationDetailActions.LocationDetailActionTypes.LoadFail
     ),
-    map((action: locationActions.LoadFail) => action.payload),
-    mergeMap(error => of(new locationActions.ShowErrorNotification(error.message)))
+    map((action: LocationDetailActions.LoadFail) => action.payload),
+    mergeMap(error => of(new LocationDetailActions.ShowErrorNotification(error.message)))
   );
 }

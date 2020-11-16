@@ -1,9 +1,7 @@
 <div class="container" *ngIf="currentUser; else loggedOut">
-  <header class="jumbotron">
-    <h3>
-      <strong>{{ currentUser?.email }}</strong> Profile
-    </h3>
-  </header>
+  <h1 class="my-5">
+    <strong>{{ currentUser?.email }}</strong> Profile
+  </h1>
 
   <table class="table">
     <tr>
@@ -17,7 +15,7 @@
     <tr>
       <td>Picture</td>
       <td>
-        <img [src]="currentUser.picture"  alt="picture" width="100" height="100"/></td>
+        <img [src]="currentUser.picture" alt="picture" width="100" height="100"/></td>
     </tr>
     <tr>
       <td>Email</td>

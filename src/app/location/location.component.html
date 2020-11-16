@@ -1,1 +1,102 @@
-<p>location works!</p>
+<div class="container">
+  <h1 class="my-5">Locations</h1>
+
+  <ng-container *ngIf="(locations$ | async) as locations">
+    <div class="row" *ngFor="let location of locations; trackBy: locationIndex">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <strong>{{ location.name }}</strong>
+          </div>
+          <div class="card-body">
+            <div class="card-text">
+              <p>Location: {{ location.locationId }}</p>
+              <p>Timezone: {{ location.timezone }}</p>
+              <p>
+                <button (click)="loadLocationDetails(location.locationId)" class="btn btn-info">Get location details
+                </button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="(locationsDetails$ | async) as locationDetail">
+    <div class="row mt-4">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <strong>Location details</strong>
+          </div>
+          <div class="card-body">
+            <div class="card-text">
+              <p>Health: {{ locationDetail.health }}</p>
+              <p>Date: {{ locationDetail.date }}</p>
+              <p>Next token: {{ locationDetail.nextToken }}</p>
+
+              <div class="mt-2">
+                <p>Devices:</p>
+                <div class="row">
+                  <div class="col-auto" *ngFor="let device of locationDetail.devices">
+                    <table class="table table-hover">
+                      <tr>
+                        <td>Type</td>
+                        <td>{{ device.type}}</td>
+                      </tr>
+                      <tr>
+                        <td>Device Id</td>
+                        <td>{{ device.deviceId}}</td>
+                      </tr>
+                      <tr>
+                        <td>Firmware version</td>
+                        <td>{{ device.firmwareVersion}}</td>
+                      </tr>
+                      <tr>
+                        <td>Health</td>
+                        <td>{{ device.health}}</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-2">
+                <p>Services:</p>
+                <div class="row">
+                  <div class="col-auto" *ngFor="let service of locationDetail.services">
+                    <table class="table table-hover">
+                      <tr>
+                        <td>Type</td>
+                        <td>{{ service.type}}</td>
+                      </tr>
+                      <tr>
+                        <td>Service id:</td>
+                        <td>{{ service.serviceId}}</td>
+                      </tr>
+                      <tr>
+                        <td>Characteristic</td>
+                        <td>{{ service.characteristic}}</td>
+                      </tr>
+                      <tr>
+                        <td>Health</td>
+                        <td>{{ service.health}}</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <ng-container *ngIf="locationDetail.messages.length > 0">
+                  <p>Message:</p>
+                  <div *ngFor="let message of locationDetail.messages">
+                    <small>{{ message }}</small>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+</div>

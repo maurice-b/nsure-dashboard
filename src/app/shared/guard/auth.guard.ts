@@ -24,7 +24,7 @@ export class AuthGuard implements CanActivate {
     const auth$ = this.authStore.pipe(
       select(AuthSelector.getAuthState),
       map((result: AuthState.AuthStateInterface | undefined) => {
-        if (result === undefined) {
+        if (result === undefined || !result.isAuthenticated) {
           // Log in.
           throw Error('Redirect to login page');
           // this.router.navigate(['/login'], {

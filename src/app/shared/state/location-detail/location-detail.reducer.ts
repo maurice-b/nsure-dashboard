@@ -1,44 +1,42 @@
-import {LocationDetailActions, LocationActionTypes} from './location-detail.actions';
-import {LocationStateInterface} from './location.state.interface';
-import {LocationInterface} from '../../services/location/location.interface';
-import {createEntityAdapter, EntityAdapter} from '@ngrx/entity';
+import {LocationDetailActions, LocationDetailActionTypes} from './location-detail.actions';
+import {LocationDetailStateInterface} from './location-detail.state.interface';
 
-// Create Adapter
-export const dataItemAdapter: EntityAdapter<LocationInterface> = createEntityAdapter<LocationInterface>({
-  selectId: (location: LocationInterface) => location.locationId // Define the select id
-});
+export const initialState: LocationDetailStateInterface = {
+  loaded: false,
+  details: {
+    date: '',
+    devices: [],
+    health: '',
+    messages: [],
+    nextToken: '',
+    services: []
+  }
+};
 
-export const initialState: LocationStateInterface = dataItemAdapter.getInitialState({
-  total: null
-});
-
-export function reducer(state = initialState, action: LocationDetailActions): LocationStateInterface {
+export function reducer(state = initialState, action: LocationDetailActions): LocationDetailStateInterface {
   switch (action.type) {
-    case LocationActionTypes.LoadSuccess: {
-      // Clear collection
-      const removedStateObject = dataItemAdapter.removeAll(state);
-      // Add new records
-      const newState = dataItemAdapter.setAll(action.data, removedStateObject);
-
-      newState.total = action.data.length;
-      return newState;
+    case LocationDetailActionTypes.Load: {
+      return {
+        ...state,
+        loaded: false
+      };
+    }
+    case LocationDetailActionTypes.LoadSuccess: {
+      return {
+        ...state,
+        details: {...action.data},
+        loaded: true
+      };
     }
 
-    case LocationActionTypes.LoadFail: {
-      const removedStateObject = dataItemAdapter.removeAll(state);
-      removedStateObject.total = 0;
-      return removedStateObject;
+    case LocationDetailActionTypes.LoadFail: {
+      return {
+        ...state,
+        ...initialState
+      };
     }
 
     default:
       return state;
   }
 }
-
-
-export const {
-  selectAll,
-  selectEntities,
-  selectIds,
-  selectTotal
-} = dataItemAdapter.getSelectors();

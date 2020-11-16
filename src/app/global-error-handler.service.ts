@@ -38,6 +38,8 @@ export class GlobalErrorHandlerService extends ErrorHandler {
       ];
     }
 
+    console.error(message, errorData);
+
     // TODO: Implement toaster
     // this.loggingService.error(message, errorData);
     //

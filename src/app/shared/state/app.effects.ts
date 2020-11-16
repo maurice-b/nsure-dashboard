@@ -1,11 +1,15 @@
-import {StatsEffects} from './stats/stats.effects';
 import {LocationEffects} from './location/location.effects';
 import {AuthEffects} from './auth/auth.effects';
 import {LocationDetailEffects} from './location-detail/location-detail.effects';
+import {DeviceEffects} from '@app-shared/state/device/device.effects';
+import {DeviceDetailEffects} from '@app-shared/state/device-detail/device-detail.effects';
+import {DeviceRealtimeEffects} from '@app-shared/state/device-realtime/device-realtime.effects';
 
 export const appEffects = [
-  StatsEffects,
   LocationEffects,
   LocationDetailEffects,
-  AuthEffects
+  AuthEffects,
+  DeviceEffects,
+  DeviceDetailEffects,
+  DeviceRealtimeEffects
 ];

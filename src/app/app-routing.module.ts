@@ -4,9 +4,9 @@ import {LoginComponent} from './login/login.component';
 import {ProfileComponent} from './profile/profile.component';
 import {LocationComponent} from './location/location.component';
 import {HomeComponent} from './home/home.component';
-import {StatsComponent} from './stats/stats.component';
 import {AuthGuard} from './shared/guard/auth.guard';
 import {LoginGuard} from '@app-shared/guard/login.guard';
+import {StatsContainerComponent} from './stats/stats-container/stats-container.component';
 
 const routes: Routes = [
   {
@@ -23,6 +23,11 @@ const routes: Routes = [
       LoginGuard
     ]
   },
+  // {
+  //   // TODO: Create logout component.
+  //   path: 'logout',
+  //   component: LogOutComponent,
+  // },
   {
     path: 'profile',
     component: ProfileComponent,
@@ -39,7 +44,7 @@ const routes: Routes = [
   },
   {
     path: 'stats',
-    component: StatsComponent,
+    component: StatsContainerComponent,
     canActivate: [
       AuthGuard
     ]

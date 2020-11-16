@@ -6,9 +6,8 @@ import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
 import {ProfileComponent} from './profile/profile.component';
 import {LocationComponent} from './location/location.component';
-import {StatsComponent} from './stats/stats.component';
 import {HomeComponent} from './home/home.component';
-import {AuthInterceptor} from './shared/helpers/auth.interceptor';
+import {AuthInterceptor} from './shared/interceptor/auth.interceptor';
 import {LayoutModule} from './layout/layout.module';
 import {FormsModule} from '@angular/forms';
 import {AuthGuard} from './shared/guard/auth.guard';
@@ -17,6 +16,7 @@ import {GlobalErrorHandlerService} from './global-error-handler.service';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {StateModule} from './state.module';
 import {LoginGuard} from '@app-shared/guard/login.guard';
+import {StatsModule} from './stats/stats.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,6 @@ import {LoginGuard} from '@app-shared/guard/login.guard';
     LoginComponent,
     ProfileComponent,
     LocationComponent,
-    StatsComponent,
     HomeComponent
   ],
   imports: [
@@ -33,7 +32,8 @@ import {LoginGuard} from '@app-shared/guard/login.guard';
     AppRoutingModule,
     LayoutModule,
     FormsModule,
-    StateModule.forRoot()
+    StateModule.forRoot(),
+    StatsModule
   ],
   providers: [
     AuthService,

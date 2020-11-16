@@ -3,7 +3,7 @@ import { Action } from '@ngrx/store';
 import {LocationInterface} from '../../services/location/location.interface';
 
 export enum LocationActionTypes {
-  Load = '[Location] Load by source system name',
+  Load = '[Location] Load data from web api',
   LoadSuccess = '[Location] Load succeed',
   LoadFail = '[Location] Load fail',
 

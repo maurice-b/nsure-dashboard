@@ -22,6 +22,12 @@ export class AuthService {
     private tokenStorageService: TokenStorageService) {
   }
 
+  public listAuthEndpoints(): string[]{
+    return [
+      `${AUTH_API}/token`
+    ];
+  }
+
   public getAuthToken(credentials: CredentialsInterface): Observable<TokenInterface> {
     return this.http.post<TokenInterface>(`${AUTH_API}/token`, {
       client_id: `${CLIENT_ID}`,
@@ -81,7 +87,7 @@ export class AuthService {
     return expirationDateTime.toSeconds() >= DateTime.local().toSeconds();
   }
 
-  public signOut(): void {
+  public logOut(): void {
     this.tokenStorageService.signOut();
   }
 }

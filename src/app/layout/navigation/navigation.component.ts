@@ -32,7 +32,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
   }
 
   public logout(): void {
-    this.authService.signOut();
+    this.authService.logOut();
     window.location.reload();
   }
 

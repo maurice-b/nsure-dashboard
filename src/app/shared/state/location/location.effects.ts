@@ -20,15 +20,11 @@ export class LocationEffects {
   @Effect()
   loadLocations$: Observable<Action> = this.actions$.pipe(
     ofType(locationActions.LocationActionTypes.Load),
-    mergeMap(() => {
-        return this.locationService.getLocations().pipe(
-          map((data: LocationInterface[]) => {
-              return new locationActions.LoadSuccess(data);
-            }
-          ),
-          catchError((err: HttpErrorResponse) => of(new locationActions.LoadFail(err)))
-        );
-      }
+    mergeMap(() =>
+      this.locationService.getLocations().pipe(
+        map((data: LocationInterface[]) => new locationActions.LoadSuccess(data)),
+        catchError((err: HttpErrorResponse) => of(new locationActions.LoadFail(err)))
+      )
     )
   );
 

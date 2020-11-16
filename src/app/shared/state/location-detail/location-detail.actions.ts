@@ -1,38 +1,38 @@
 import {HttpErrorResponse} from '@angular/common/http';
 import {Action} from '@ngrx/store';
-import {LocationInterface} from '../../services/location/location.interface';
+import {LocationDetailInterface} from '@app-shared/services/location/location-detail.interface';
 
-export enum LocationActionTypes {
-  Load = '[Location] Load by source system name',
-  LoadSuccess = '[Location] Load succeed',
-  LoadFail = '[Location] Load fail',
+export enum LocationDetailActionTypes {
+  Load = '[Location detail] Load by location id',
+  LoadSuccess = '[Location detail] Load succeed',
+  LoadFail = '[Location detail] Load fail',
 
-  ShowErrorNotification = '[Location] Show error notification',
+  ShowErrorNotification = '[Location detail] Show error notification',
 }
 
 export class ShowErrorNotification implements Action {
-  readonly type = LocationActionTypes.ShowErrorNotification;
+  readonly type = LocationDetailActionTypes.ShowErrorNotification;
 
   constructor(public payload: string) {
   }
 }
 
 export class Load implements Action {
-  readonly type = LocationActionTypes.Load;
+  readonly type = LocationDetailActionTypes.Load;
 
-  constructor() {
+  constructor(public locationId: string) {
   }
 }
 
 export class LoadSuccess implements Action {
-  readonly type = LocationActionTypes.LoadSuccess;
+  readonly type = LocationDetailActionTypes.LoadSuccess;
 
-  constructor(public data: LocationInterface[]) {
+  constructor(public data: LocationDetailInterface) {
   }
 }
 
 export class LoadFail implements Action {
-  readonly type = LocationActionTypes.LoadFail;
+  readonly type = LocationDetailActionTypes.LoadFail;
 
   constructor(public payload: HttpErrorResponse) {
   }
@@ -42,6 +42,7 @@ export class LoadFail implements Action {
 // Union the valid types
 export type LocationDetailActions =
   | ShowErrorNotification
+  | Load
   | LoadSuccess
   | LoadFail
   ;

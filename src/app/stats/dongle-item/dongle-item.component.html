@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-header">
+    <label for="contactMethod">Dongle's</label>
+  </div>
+  <div class="card-body">
+    <div class="card-text">
+
+      <div class="form-group">
+        <select
+          name="contactMethod"
+          id="contactMethod"
+          class="form-control"
+          [(ngModel)]="selectedDongleId"
+          (change)="onSelect()"
+        >
+          <option *ngFor="let dongle of data" [value]="dongle.dongleID" [selected]="false">{{ (dongle.name !== '' ? dongle.name : 'unknown') }}</option>
+        </select>
+      </div>
+
+    </div>
+  </div>
+</div>

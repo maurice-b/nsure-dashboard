@@ -1,0 +1,56 @@
+<div class="card" *ngIf="data !== undefined && data !== null">
+  <div class="card-header">
+    <span>Dongle details</span>
+  </div>
+  <div class="card-body">
+    <div class="card-text">
+      <table class="table">
+        <tr>
+          <th>Name</th>
+          <th>Value</th>
+        </tr>
+
+        <tr>
+          <td>Electricity cost<td>
+          <td>&euro; {{ data.electricityCostLow }}</td>
+        </tr>
+        <tr>
+          <td>Electricity target<td>
+          <td>{{ data.electricityTarget }}</td>
+        </tr>
+        <tr>
+          <td>Firmware version<td>
+          <td>{{ data.firmwareVersion }}</td>
+        </tr>
+        <tr>
+          <td>Gas cost<td>
+          <td>&euro; {{ data.gasCost }}</td>
+        </tr>
+        <tr>
+          <td>Gas target cost<td>
+          <td>{{ data.gasTarget }}</td>
+        </tr>
+        <tr>
+          <td>Mac address<td>
+          <td>{{ data.macAddress }}</td>
+        </tr>
+        <tr>
+          <td>Name<td>
+          <td>{{ data.name }}</td>
+        </tr>
+        <tr>
+          <td>Solar<td>
+          <td>{{ data.solar }}</td>
+        </tr>
+        <tr>
+          <td>Solar target<td>
+          <td>{{ data.solarTarget }}</td>
+        </tr>
+        <tr>
+          <td>Timezone<td>
+          <td>{{ data.timezone }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

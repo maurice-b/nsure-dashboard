@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { StatsHistoryComponent } from './stats-history.component';
 
@@ -6,7 +6,7 @@ describe('StatsHistoryComponent', () => {
   let component: StatsHistoryComponent;
   let fixture: ComponentFixture<StatsHistoryComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ StatsHistoryComponent ]
     })

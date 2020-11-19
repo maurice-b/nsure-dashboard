@@ -72,7 +72,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
           // 401 errors are most likely going to be because we have an expired token that we need to refresh.
           if (this.refreshTokenInProgress) {
-            debugger;
             // If refreshTokenInProgress is true, we will wait until refreshTokenSubject has a non-null value
             // which means the new token is ready and we can retry the request again
             return this.refreshTokenSubject.pipe(
@@ -98,7 +97,6 @@ export class AuthInterceptor implements HttpInterceptor {
                 return next.handle(AuthInterceptor.addAuthenticationToken(req, token.access_token));
               }),
               catchError((httpErrorResponse: HttpErrorResponse) => {
-                debugger;
                 // Resign in
                 // this.authService.getAuthToken(this.tokenStorageService.)
                 this.tokenStorageService.signOut();

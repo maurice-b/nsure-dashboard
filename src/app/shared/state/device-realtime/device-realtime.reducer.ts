@@ -1,7 +1,7 @@
 import {DeviceRealtimeActionTypes, DeviceRealtimeActions} from './device-realtime.actions';
 import {DeviceRealtimeStateInterface} from './device-realtime.state.interface';
 import {createEntityAdapter, EntityAdapter} from '@ngrx/entity';
-import {RealtimeDataInterface} from '../../services/device/realtime-data.interface';
+import {RealtimeDataInterface} from '@app-shared/services/realtime-data/realtime-data.interface';
 
 // Create Adapter
 export const dataItemAdapter: EntityAdapter<RealtimeDataInterface> = createEntityAdapter<RealtimeDataInterface>({

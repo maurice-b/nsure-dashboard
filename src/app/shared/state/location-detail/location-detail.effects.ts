@@ -5,8 +5,9 @@ import {Action} from '@ngrx/store';
 import {Observable, of} from 'rxjs';
 import {catchError, map, mergeMap, switchMap} from 'rxjs/operators';
 import * as LocationDetailActions from './location-detail.actions';
-import {LocationService} from '../../services/location/location.service';
+import {LocationService} from '@app-shared/services/location/location.service';
 import {LocationDetailInterface} from '@app-shared/services/location/location-detail.interface';
+
 
 @Injectable()
 export class LocationDetailEffects {

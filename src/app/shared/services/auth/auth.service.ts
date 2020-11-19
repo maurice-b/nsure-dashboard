@@ -6,8 +6,8 @@ import {CredentialsInterface} from './credentials.interface';
 import {TokenStorageService} from '../token-storage/token-storage.service';
 import {DateTime} from 'luxon';
 import {map, take} from 'rxjs/operators';
+import {USER_API_URL} from '@app-shared/const';
 
-const AUTH_API = 'https://auth.thuisapp.info/oauth';
 const CLIENT_ID = 'n7LzLOJnYe5AN0g7EGMSsHEKc7yybuUx';
 const SCOPE = 'openid email profile offline_access';
 const AUDIENCE = 'thuis-platform';
@@ -24,12 +24,12 @@ export class AuthService {
 
   public listAuthEndpoints(): string[]{
     return [
-      `${AUTH_API}/token`
+      `${USER_API_URL}/oauth/token`
     ];
   }
 
   public getAuthToken(credentials: CredentialsInterface): Observable<TokenInterface> {
-    return this.http.post<TokenInterface>(`${AUTH_API}/token`, {
+    return this.http.post<TokenInterface>(`${USER_API_URL}/oauth/token`, {
       client_id: `${CLIENT_ID}`,
       grant_type: 'password',
       username: credentials.username,
@@ -48,7 +48,7 @@ export class AuthService {
   }
 
   public refreshToken(refreshToken: string): Observable<TokenInterface> {
-    return this.http.post<TokenInterface>(`${AUTH_API}/token`, {
+    return this.http.post<TokenInterface>(`${USER_API_URL}/oauth/token`, {
       client_id: `${CLIENT_ID}`,
       grant_type: 'refresh_token',
       refresh_token: refreshToken,

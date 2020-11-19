@@ -4,6 +4,7 @@ import {LocationDetailStateInterface} from '@app-shared/state/location-detail/lo
 import {DeviceStateInterface} from '@app-shared/state/device/device.state.interface';
 import {DeviceDetailStateInterface} from '@app-shared/state/device-detail/device-detail.state.interface';
 import {DeviceRealtimeStateInterface} from '@app-shared/state/device-realtime/device-realtime.state.interface';
+import {ReportDataStateInterface} from '@app-shared/state/report-data/report-data.state.interface';
 
 export interface AppStateInterface {
   location: LocationStateInterface;
@@ -12,4 +13,5 @@ export interface AppStateInterface {
   device: DeviceStateInterface;
   deviceDetail: DeviceDetailStateInterface;
   deviceRealtime: DeviceRealtimeStateInterface;
+  reportData: ReportDataStateInterface;
 }

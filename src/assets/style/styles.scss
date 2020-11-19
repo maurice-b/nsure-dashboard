@@ -2,3 +2,17 @@
 
 // Darkmode
 @import "~@forevolve/bootstrap-dark/scss/bootstrap-dark";
+
+// Bs-datepicker styling
+$main-bg:         $body-bg;
+$custom-range-bg: $gray-200;
+@import "~ngx-bootstrap/datepicker/bs-datepicker";
+
+
+// Fontawsome
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/brands';

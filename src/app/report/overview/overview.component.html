@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-12">
+    <app-dongle-item [data]="devices$ | async" (selected)="onDeviceSelected($event)"></app-dongle-item>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <span>Graph</span>
+        <span class="small ml-2">({{ model?.reportType }} : {{ model?.reportDateTimeIndicatorType }})</span>
+        <span *ngIf="model?.startDateTime !== undefined && model?.endDateTime !== undefined"
+              class="ml-2 float-right small">{{ model?.startDateTime | date : 'dd-MM-YYYY HH:mm:ss'}}
+          - {{ model?.endDateTime | date : 'dd-MM-YYYY HH:mm:ss'}}</span>
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="onSubmit()" [formGroup]="form">
+          <formly-form [fields]="fields"
+                       [form]="form"
+                       [model]="model"
+                       (modelChange)="onFormChange()"
+          ></formly-form>
+          <button type="submit" class="btn btn-outline-primary">Submit</button>
+        </form>
+
+        <div class="row mt-4">
+          <div class="col-12">
+            <div class="chart-wrapper">
+              <app-report-graph [data]="reportData$ | async"></app-report-graph>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

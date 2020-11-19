@@ -1,6 +1,6 @@
 import {HttpErrorResponse} from '@angular/common/http';
 import {Action} from '@ngrx/store';
-import {RealtimeDataInterface} from '@app-shared/services/device/realtime-data.interface';
+import {RealtimeDataInterface} from '../../services/realtime-data/realtime-data.interface';
 import {DeviceTypeEnum} from '@app-shared/services/device/device-type.enum';
 
 export enum DeviceRealtimeActionTypes {

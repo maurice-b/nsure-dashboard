@@ -6,14 +6,16 @@ import {Observable, of} from 'rxjs';
 import {catchError, map, mergeMap, switchMap} from 'rxjs/operators';
 import {DeviceService} from '@app-shared/services/device/device.service';
 import * as DeviceRealtimeActions from '../device-realtime/device-realtime.actions';
-import {RealtimeDataInterface} from '../../services/device/realtime-data.interface';
+import {RealtimeDataInterface} from '../../services/realtime-data/realtime-data.interface';
+import {RealtimeDataService} from '../../services/realtime-data/realtime-data.service';
 
 @Injectable()
 export class DeviceRealtimeEffects {
 
   constructor(
     private actions$: Actions,
-    private deviceService: DeviceService
+    private deviceService: DeviceService,
+    private realtimeDataService: RealtimeDataService
   ) {
   }
 
@@ -26,7 +28,7 @@ export class DeviceRealtimeEffects {
       deviceType: action.deviceType
     })),
     switchMap(payload =>
-      this.deviceService.getRealtimeData(payload.deviceType, payload.deviceId).pipe(
+      this.realtimeDataService.getRealtimeData(payload.deviceType, payload.deviceId).pipe(
         map((data: RealtimeDataInterface) =>
           new DeviceRealtimeActions.LoadSuccess(data)
         ),

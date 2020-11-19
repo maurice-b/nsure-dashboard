@@ -23,6 +23,21 @@
     "paths": {
       "@app-shared/*": [
         "./src/app/shared/*"
+      ],
+      "@app-location/*": [
+        "./src/app/location/*"
+      ],
+      "@app-login/*": [
+        "./src/app/login/*"
+      ],
+      "@app-profile/*": [
+        "./src/app/profile/*"
+      ],
+      "@app-report/*": [
+        "./src/app/report/*"
+      ],
+      "@app-stats/*": [
+        "./src/app/stats/*"
       ]
     }
   },

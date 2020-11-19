@@ -1,26 +1,31 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {StatsRealtimeComponent} from './stats-realtime/stats-realtime.component';
-import {StatsContainerComponent} from './stats-container/stats-container.component';
-import {DongleItemComponent} from './dongle-item/dongle-item.component';
+import {OverviewComponent} from './overview/overview.component';
 import {FormsModule} from '@angular/forms';
-import { DongleItemDetailComponent } from './dongle-item-detail/dongle-item-detail.component';
 import {ChartsModule} from 'ng2-charts';
-import { StatsHistoryComponent } from './stats-history/stats-history.component';
+import {RealtimeDataService} from '@app-shared/services/realtime-data/realtime-data.service';
+import {DongleItemDetailComponent} from '@app-stats/dongle-item-detail/dongle-item-detail.component';
+import {LocationComponent} from '@app-stats/location/location.component';
+import {SharedModule} from '@app-shared/shared.module';
+import {StatsRoutingModule} from '@app-stats/stats.routing';
 
 
 @NgModule({
   declarations: [
-    StatsRealtimeComponent,
-    StatsContainerComponent,
-    DongleItemComponent,
+    OverviewComponent,
     DongleItemDetailComponent,
-    StatsHistoryComponent
+    LocationComponent
   ],
   imports: [
+    StatsRoutingModule,
     CommonModule,
     FormsModule,
-    ChartsModule
+    ChartsModule,
+    SharedModule
+  ],
+  exports: [],
+  providers: [
+    RealtimeDataService
   ]
 })
 export class StatsModule {

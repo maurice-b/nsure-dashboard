@@ -1,11 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../shared/services/auth/auth.service';
 import {TokenStorageService} from '../shared/services/token-storage/token-storage.service';
-import {TokenInterface} from '../shared/services/token-storage/token.interface';
 import {Router} from '@angular/router';
 import {CredentialsInterface} from '../shared/services/auth/credentials.interface';
 import {select, Store} from '@ngrx/store';
-import {selector as AuthSelector, state as AuthState, actions as AuthActions} from '@app-shared/state/auth';
+import {actions as AuthActions, selector as AuthSelector, state as AuthState} from '@app-shared/state/auth';
 import {filter, takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 
@@ -39,7 +38,11 @@ export class LoginComponent implements OnInit, OnDestroy {
       select(AuthSelector.isAuthenticated),
       filter(data => data !== undefined),
       takeUntil(this.isAuthenticatedDestroy$)
-    ).subscribe((isAuthenticated: boolean) => this.isLoggedIn = isAuthenticated);
+    ).subscribe((isAuthenticated: boolean) => {
+      this.isLoggedIn = isAuthenticated;
+
+      this.router.navigate(['/']);
+    });
   }
 
   public onSubmit(): void {

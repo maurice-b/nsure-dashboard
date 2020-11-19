@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-12">
+    <app-dongle-item [data]="devices$ | async" (selected)="onDeviceSelected($event)"></app-dongle-item>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <span class="mr-2">Realtime data</span>
+        <i class="fas fa-spinner fa-spin"></i>
+      </div>
+      <div class="card-body">
+        <div class="row mt-4">
+          <div class="col-12">
+            <div class="chart-wrapper">
+              <app-realtime-graph [data]="deviceRealtimeData$ | async"></app-realtime-graph>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

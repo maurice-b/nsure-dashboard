@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {DongleDataInterface} from '@app-shared/services/device/dongle-data.interface';
 
 @Component({
-  selector: 'app-dongle-item-detail',
+  selector: 'app-stats-dongle-item-detail',
   templateUrl: './dongle-item-detail.component.html',
   styleUrls: ['./dongle-item-detail.component.scss']
 })

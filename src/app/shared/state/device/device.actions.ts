@@ -1,8 +1,5 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Action } from '@ngrx/store';
-import {LocationInterface} from '../../services/location/location.interface';
-import {DeviceInterface} from '@app-shared/services/location/device.interface';
-import {DevicesInterface} from '@app-shared/services/device/devices.interface';
+import {HttpErrorResponse} from '@angular/common/http';
+import {Action} from '@ngrx/store';
 import {DongleInterface} from '@app-shared/services/device/dongle.interface';
 
 export enum DeviceActionTypes {

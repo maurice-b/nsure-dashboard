@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-12">
+    <app-dongle-item [data]="devices$ | async" (selected)="onDeviceSelected($event)"></app-dongle-item>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-6">
+    <app-stats-dongle-item-detail [data]="deviceDetails$ | async"></app-stats-dongle-item-detail>
+  </div>
+</div>
